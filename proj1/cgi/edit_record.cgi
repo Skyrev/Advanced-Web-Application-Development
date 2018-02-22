@@ -51,10 +51,13 @@ else {
 	$image = $str;
 }
 
-my $sth = $dbh->prepare("UPDATE products SET sku='".$sku."', category='".$category."', vendor='".$vendor."', mfg_id='".$mfgid."', description='"
-                        .$description."', features='".$features."', cost='".$cost."', retail='".$retail."', quantity='".$qty."', image='".$image
-                        ."' WHERE sku='".$sku."';");
-$sth->execute();
+# my $sth = $dbh->prepare("UPDATE products SET sku='".$sku."', category='".$category."', vendor='".$vendor."', mfg_id='".$mfgid."', description='"
+#                         .$description."', features='".$features."', cost='".$cost."', retail='".$retail."', quantity='".$qty."', image='".$image
+#                         ."' WHERE sku='".$sku."';");
+
+my $sth = $dbh->prepare("UPDATE products SET sku=?, category=?, vendor=?, mfg_id=?, description=?, features=?, cost=?, retail=?, quantity=?, image=? WHERE sku=?;");
+
+$sth->execute($sku, $category, $vendor, $mfgid, $description, $features, $cost, $retail, $qty, $image, $sku);
 $sth->finish();
 $dbh->disconnect();
 

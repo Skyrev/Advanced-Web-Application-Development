@@ -24,8 +24,8 @@ or die 'Cannot connect to db';
 my $q = new CGI;
 my $sku = $q->param('sku');
 
-my $sth = $dbh->prepare("DELETE FROM products WHERE sku='".$sku."';");
-$sth->execute();
+my $sth = $dbh->prepare("DELETE FROM products WHERE sku=?;");
+$sth->execute($sku);
 $sth->finish();
 $dbh->disconnect();
 

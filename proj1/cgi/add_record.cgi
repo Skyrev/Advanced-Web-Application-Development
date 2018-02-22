@@ -28,9 +28,9 @@ my $image = $q->param('product-image');
 my $extension = substr($image, index($image, "."));
 $image = $sku.$extension;
 
-my $sth = $dbh->do("INSERT INTO products VALUES('".$sku."', '".$category."', '".$vendor."', '".$mfgid."', '"
-                        .$description."', '".$features."', '".$cost."', '".$retail."', '".$qty."', '".$image."');")
-						or die $dbh->errstr;
+my $sth = $dbh->prepare("INSERT INTO products VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+$sth->execute($sku, $category, $vendor, $mfgid, $description, $features, $cost, $retail, $qty, $image);
+$sth->finish();
 $dbh->disconnect();
 
 print "Content-type: text/html\n\n";	

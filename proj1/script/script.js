@@ -159,7 +159,6 @@ function clearData() {
 	$('#vendor option:eq(0)').prop('selected', true);
 	$('#desc-char-count').text('Character limit: 300');
 	$('#feat-char-count').text('Character limit: 700');
-	clearConfirmationMessage();
 	clearErrors();
 	disableSubmit();
 }
