@@ -213,7 +213,7 @@ Content-type: text/html
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="cost">Cost</label>
-                <input type="number" class="form-control" name="cost" id="cost" min="0.1" required>
+                <input type="text" class="form-control" name="cost" id="cost" min="0.1" maxlength="8" required>
                 <div class="errors">
                   <span id="error-cost"></span>
                 </div>
@@ -221,7 +221,7 @@ Content-type: text/html
               
               <div class="form-group col-md-4">
                 <label for="retail">Retail</label>
-                &dollar; <input type="number" class="form-control" name="retail" id="retail" min="0.1" required>
+                &dollar; <input type="text" class="form-control" name="retail" id="retail" min="0.1" maxlength="8" required>
                 <div class="errors">
                   <span id="error-retail"></span>
                 </div>
@@ -229,7 +229,7 @@ Content-type: text/html
               
               <div class="form-group col-md-4">
                 <label for="qty">Quantity</label>
-                <input type="number" class="form-control" name="qty" id="qty" min="0" required>
+                <input type="text" class="form-control" name="qty" id="qty" min="0" maxlength="10" required>
                 <div class="errors">
                   <span id="error-qty"></span>
                 </div>

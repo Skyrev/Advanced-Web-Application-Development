@@ -9,9 +9,9 @@ CREATE TABLE products(
 	mfg_id VARCHAR(20) NOT NULL,
 	description VARCHAR(300) NOT NULL,
 	features VARCHAR(700) NOT NULL,
-	cost DECIMAL NOT NULL,
-	retail DECIMAL NOT NULL,
-	quantity DECIMAL NOT NULL,
+	cost DECIMAL(10,2) NOT NULL,
+	retail DECIMAL(10,2) NOT NULL,
+	quantity INT(10) NOT NULL,
 	image VARCHAR(12) NOT NULL
 );
 
