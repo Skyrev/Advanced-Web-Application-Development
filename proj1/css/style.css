@@ -113,6 +113,12 @@ form label::after {
 	margin: 40px 0 20px auto;
 }
 
+@media screen and (max-width: 991px) and (min-width: 300px) {
+	.record-buttons {
+		margin: 40px auto 20px auto;
+	}
+}
+
 .record-buttons button {
 	width: 147px;
 }
