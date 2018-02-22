@@ -1,0 +1,29 @@
+use jadrn035;
+
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products(
+	sku CHAR(7) PRIMARY KEY,
+	category VARCHAR(20) NOT NULL,
+	vendor VARCHAR(20) NOT NULL,
+	mfg_id VARCHAR(20) NOT NULL,
+	description VARCHAR(300) NOT NULL,
+	features VARCHAR(700) NOT NULL,
+	cost DECIMAL NOT NULL,
+	retail DECIMAL NOT NULL,
+	quantity DECIMAL NOT NULL,
+	image VARCHAR(12) NOT NULL
+);
+
+INSERT INTO products VALUES(
+	"ABC-123",
+	"Sci-Fi",
+	"Disney",
+	"Star Wars",
+	"A New Hope",
+	"Episode IV",
+	10.00,
+	20.00,
+	100,
+	"ABC-123.jpg"
+);
