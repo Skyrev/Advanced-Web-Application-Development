@@ -275,11 +275,11 @@ function constructConfirmationMessage() {
 	
 	var description = $('#description').val();
 	if(description.length > 100)
-		description = description.substr(0,100) + '...';
+		description = description.substr(0,100) + '....';
 	
 	var features = $('#features').val();
 	if(features.length > 100)
-		features = features.substr(0,100) + '...';
+		features = features.substr(0,100) + '....';
 	
 	var cost = $('#cost').val();
 	var retail = $('#retail').val();

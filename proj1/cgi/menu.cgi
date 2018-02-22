@@ -40,7 +40,7 @@ Content-type: text/html
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Menu - Inventory Restocker</title>
+    <title>Menu - Movieland</title>
 
   	<link rel="icon" href="/~jadrn035/proj1/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -57,7 +57,7 @@ Content-type: text/html
 
   <body class="text-center">
     <header class="bg-dark">
-      <h1>Inventory Restocker</h1>
+      <h1>Movieland</h1>
     </header>
         
 	<!-- Navigation Bar -->
@@ -245,7 +245,7 @@ Content-type: text/html
         </div>
       </div>
       
-      <p class="mt-5 text-muted">Inventory Restocker &copy; 2018-2019</p>
+      <p class="mt-5 text-muted">Movieland &copy; 2018-2019</p>
       
     </div>
     
