@@ -60,6 +60,7 @@ Content-type: text/html
       <h1>Inventory Restocker</h1>
     </header>
         
+	<!-- Navigation Bar -->
     <div class="container">
       <ul id="options-nav-bar" class="nav nav-tabs nav-fill">
         <li class="nav-item">
@@ -76,7 +77,7 @@ Content-type: text/html
         </li>
       </ul>
 	  
-	  <!-- Modal -->
+	  <!-- Log Out Modal -->
 	  <div class="modal fade" id="modal-log-out" tabindex="-1" role="dialog" aria-hidden="true">
 	    <div class="modal-dialog" role="document">
 	      <div class="modal-content">
@@ -96,12 +97,30 @@ Content-type: text/html
 	      </div>
 	    </div>
 	  </div>
+	  
+	  <!-- Confirmation Modal -->
+	  <div class="modal fade" id="modal-confirmation" tabindex="-1" role="dialog" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h5 class="modal-title">Confirmation</h5>
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	          </button>
+	        </div>
+	        <div id="modal-confirmation-body" class="modal-body">
+			</div>
+	        <div class="modal-footer justify-content-center">
+	          <a href="#" class="btn btn-primary" data-dismiss="modal">Dismiss</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
       
+	  <!-- Form Container -->
       <div id="record-form-container" class="card">
         <div class="card-body">
           <h2 id="caption">Enter details of the new record.</h2>
-          
-          <div id="confirmation-msg"></div>
         
           <form id="form-record" class="align-left" name="form-record" action="" method="post" enctype="mulitpart/form-data">
 		  

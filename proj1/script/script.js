@@ -105,7 +105,8 @@ function enableSubmit() {
 			disableSubmit();
 			return;
 		}
-		if (input_tags[i].name == 'product-image' && $(input_tags[i])[0].labels[0].textContent == 'Choose Product Image') {
+		if (input_tags[i].name == 'product-image'
+			&& $(input_tags[i])[0].labels[0].textContent == 'Choose Product Image') {
 			disableSubmit();
 			return;
 		}
@@ -260,33 +261,63 @@ function duplicate_handler(response) {
 	}
 }
 
-// Displays message after form submission
-function displayConfirmation(response) {
-	if(response == 'ADDED') {
-		$('#confirmation-msg').addClass('jumbotron');
-		$('#confirmation-msg').text('Record with SKU: ' + $('#sku').val() + ' added successfully!');
-		$('[type="reset"]').click();		
-	}
-	else if(response == 'EDITED') {
-		$('#confirmation-msg').addClass('jumbotron');
-		$('#confirmation-msg').text('Record with SKU: ' + $('#sku').val() + ' edited successfully!');
-		$('[type="reset"]').click();		
-	}
-	else if(response == 'DELETED') {
-		$('#confirmation-msg').addClass('jumbotron');
-		$('#confirmation-msg').text('Record with SKU: ' + $('#sku').val() + ' deleted successfully!');
-		$('[type="reset"]').click();	
-	}
-	else {
-		$('#confirmation-msg').addClass('jumbotron');
-		$('#confirmation-msg').text('Some error occured. Please try again after some time.');
-	}
+// Constructs the confirmation message to be displayed in the modal
+function constructConfirmationMessage() {
+	var name = $.trim($('#product-image')[0].labels[0].textContent);
+	var dot = name.lastIndexOf('.');
+	var ext = name.slice(dot+1, dot+4);
+	
+	var image = $('#sku').val() + '.' + ext;
+	var sku = $('#sku').val();
+	var category = $('#category').val();
+	var vendor = $('#vendor').val();
+	var mfg_id = $('#mfg-id').val();
+	
+	var description = $('#description').val();
+	if(description.length > 100)
+		description = description.substr(0,100) + '...';
+	
+	var features = $('#features').val();
+	if(features.length > 100)
+		features = features.substr(0,100) + '...';
+	
+	var cost = $('#cost').val();
+	var retail = $('#retail').val();
+	var qty = $('#qty').val();
+	
+	var html_code = '<table class="table"><div id="product-display-image-container" class="mx-auto mb-3">'
+ 					+ '<img id="modal-product-display-image" src="/~jadrn035/proj1/image_uploads/' + image
+					+ '" alt="Product Image" width="100px" height="auto" /></div>'
+					+ '<tbody><tr><td>SKU</td><td>'+ sku +'</td></tr><tr><td>Category</td><td>' + category + '</td></tr>'
+					+ '<tr><td>Vendor</td><td>'+ vendor +'</td></tr><tr><td>Manufacturer&apos;s Identifier</td><td>' + mfg_id + '</td></tr>'
+					+ '<tr><td>Description</td><td>'+ description +'</td></tr><tr><td>Features</td><td>' + features + '</td></tr>'
+					+ '<tr><td>Cost</td><td>'+ cost +'</td></tr><tr><td>Retail</td><td>$' + retail + '</td></tr>'
+					+ '<tr><td>Quantity</td><td>'+ qty +'</td></tr></tbody></table>';
+	
+	$('#modal-confirmation-body').html(html_code);
 }
 
-// Clears the confirmation message
-function clearConfirmationMessage() {
-	$('#confirmation-msg').text('');
-	$('#confirmation-msg').removeClass('jumbotron');
+// Displays message after form submission
+function displayConfirmation(response) {
+	if(response == 'ADDED' || response == 'EDITED' || response == 'DELETED') {
+		if(response == 'ADDED') {
+			$('#modal-confirmation .modal-title').text('Record added successfully!');		
+		}
+		else if(response == 'EDITED') {
+			$('#modal-confirmation .modal-title').text('Record edited successfully!');	
+		}
+		else if(response == 'DELETED') {
+			$('#modal-confirmation .modal-title').text('Record deleted successfully!');	
+		}
+		constructConfirmationMessage();
+		$('#modal-confirmation').modal('show');
+		$('[type="reset"]').click();
+	}
+	else {
+		$('#modal-confirmation .modal-title').text('Error');
+		$('#modal-confirmation-body').text('Some error occurred. Please try again after some time.');
+		$('#modal-confirmation').modal('show');
+	}
 }
 
 // Serializes form data
@@ -361,7 +392,6 @@ $(document).ready(function() {
 	// Handlers for loading form based on the option selected
 	$('#new-record-link').on('click', function() {
 		currentTab = 'Add';
-		clearConfirmationMessage();
 		
 		$(this).addClass('active');
 		$('#edit-record-link').removeClass('active');
@@ -378,7 +408,6 @@ $(document).ready(function() {
 	
 	$('#edit-record-link').on('click', function() {
 		currentTab = 'Edit';
-		clearConfirmationMessage();
 		
 		$(this).addClass('active');
 		$('#new-record-link').removeClass('active');
@@ -396,7 +425,6 @@ $(document).ready(function() {
 	
 	$('#delete-record-link').on('click', function() {
 		currentTab = 'Delete';
-		clearConfirmationMessage();
 		
 		$(this).addClass('active');
 		$('#edit-record-link').removeClass('active');

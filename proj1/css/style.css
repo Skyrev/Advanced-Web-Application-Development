@@ -125,3 +125,10 @@ form label::after {
 	padding: 5px 30px;
 }
 
+#modal-confirmation td:nth-child(odd) {
+    text-align: right;
+}
+
+#modal-confirmation td:nth-child(even) {
+    text-align: left;
+}
