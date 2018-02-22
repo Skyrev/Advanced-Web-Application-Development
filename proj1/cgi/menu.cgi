@@ -42,7 +42,7 @@ Content-type: text/html
 
     <title>Menu - Inventory Restocker</title>
 
-  	<!-- <link rel="icon" href="/~jadrn035/proj1/favicon.ico"> -->
+  	<link rel="icon" href="/~jadrn035/proj1/favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
                       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
                       crossorigin="anonymous">
