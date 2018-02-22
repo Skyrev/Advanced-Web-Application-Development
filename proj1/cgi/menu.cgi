@@ -108,6 +108,17 @@ Content-type: text/html
 	        <div id="product-display-image-container" class="mx-auto mb-3">
 	          <img id="product-display-image" src="/~jadrn035/proj1/images/default-product.png" alt="Product Image" width="150px" height="auto" />
 		  	</div>
+			
+            <!-- Product Image Upload -->
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" name="product-image" id="product-image" required>
+                <label class="custom-file-label" for="product-image">Choose Product Image</label>
+              </div>
+            </div>
+            <div class="errors">
+              <span id="error-image"></span>
+            </div>
             
             <!-- SKU, Category -->
             <div class="form-row">
@@ -204,17 +215,6 @@ Content-type: text/html
                   <span id="error-qty"></span>
                 </div>
               </div>
-            </div>
-            
-            <!-- Product Image Upload -->
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" name="product-image" id="product-image" required>
-                <label class="custom-file-label" for="product-image">Choose Product Image</label>
-              </div>
-            </div>
-            <div class="errors">
-              <span id="error-image"></span>
             </div>
             
             <!-- Clear, Add buttons -->
