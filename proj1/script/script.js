@@ -152,6 +152,7 @@ function clearData() {
 	for(i=0; i<input_tags.length; i++) {
 		$(input_tags)[i].value = '';
 	}
+	$('#product-display-image').prop('src', '/~jadrn035/proj1/images/default-product.png');
 	$('textarea').val('');
 	$('label[for="product-image"]').text('Choose Product Image');
 	$('#category option:eq(0)').prop('selected', true);
@@ -209,6 +210,7 @@ function populateFields(response) {
 		$('#retail').val(record[7]);
 		$('#qty').val(record[8]);
 		$('label[for="product-image"]').text(record[9]);
+		$('#product-display-image').prop('src', '/~jadrn035/proj1/image_uploads/' + record[9]);
 		enableSubmit();
 		
 		if(currentTab == 'Edit') {
@@ -332,6 +334,22 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+// Source: http://jsbin.com/hiboxubaho/edit?html,js,output
+function displayImage(value) {
+    if (value && $('#product-image')[0].files && $('#product-image')[0].files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#product-display-image').prop('src', e.target.result);
+        };
+
+        reader.readAsDataURL($('#product-image')[0].files[0]);
+    }
+	else {
+		$('#product-display-image').prop('src', '/~jadrn035/proj1/images/default-product.png');
+	}
 }
 
 
@@ -595,24 +613,28 @@ $(document).ready(function() {
 			$('#error-image').text('Please upload product image');
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
+			displayImage(false);
 			// errors.product_image = true;	// TODO
 		}
 		else if (!isValidFileFormat(this.files[0].name)) {
 			$('#error-image').text('Only .jpg, .jpeg, .png, .bmp, .svg, .gif, .tiff image formats are allowed. Upload another image');
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
+			displayImage(false);
 			// errors.product_image = true;	// TODO
 		}
 		else if (this.files[0].size/1000 > 3000) {
 			$('#error-image').text('File size exceeds 3 MB. Upload a smaller image');
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
+			displayImage(false);
 			// errors.product_image = true;	// TODO
 		}
 		else {
 			$('label[for="product-image"]').text(this.files[0].name);
 			$('#error-image').text('');
 			enableSubmit();
+			displayImage(true);
 			// errors.product_image = false;	// TODO
 		}
 	});

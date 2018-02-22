@@ -104,6 +104,10 @@ Content-type: text/html
           <div id="confirmation-msg"></div>
         
           <form id="form-record" class="align-left" name="form-record" action="" method="post" enctype="mulitpart/form-data">
+		  
+	        <div id="product-display-image-container" class="mx-auto mb-3">
+	          <img id="product-display-image" src="/~jadrn035/proj1/images/default-product.png" alt="Product Image" width="150px" height="auto" />
+		  	</div>
             
             <!-- SKU, Category -->
             <div class="form-row">

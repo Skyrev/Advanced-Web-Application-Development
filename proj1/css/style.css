@@ -92,6 +92,10 @@ form label::after {
     margin-top: 20px;
 }
 
+#product-display-image-container {
+	width: 150px;
+}
+
 .errors {
 	font-size: 13px;
     color: #ff0000;
