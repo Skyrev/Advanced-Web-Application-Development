@@ -12,20 +12,6 @@ if(getCookie('jadrn035_SID') == '')
 // currentTab indicates the tab the user is currently in
 var currentTab = 'Add';
 
-// TODO
-// var errors = {
-// 			  'sku': true,
-// 			  'category': true,
-// 			  'vendor': true,
-// 			  'mfg_id': true,
-// 			  'description': true,
-// 			  'features': true,
-// 			  'cost': true,
-// 			  'retail': true,
-// 			  'qty': true,
-// 			  'product_image': true
-// };
-
 // Parse a string separated by a specified delimiter
 // and store its components in an array
 // Source: http://www.webmasterworld.com/forum91/3262.htm
@@ -119,14 +105,6 @@ function enableSubmit() {
 		}
 	}
 	
-	// TODO
-	// for (var field in errors) {
-// 		if (!errors[field]) {
-// 			disableSubmit();
-// 			return;
-// 		}
-// 	}
-	
 	$('[type="submit"]').prop('disabled', false);
 	$('[type="submit"]').prop('title', 'Click to submit form');
 }
@@ -137,13 +115,6 @@ function clearErrors() {
 	for(i=0; i<error_msgs.length; i++) {
 		$(error_msgs[i]).text('');
 	}
-	
-	// TODO
-	// for (var field in errors) {
-// 		if (errors.hasOwnProperty(field)) {
-// 			errors[field] = false;
-// 		}
-// 	}
 }
 
 // Clears data from input fields, selects the default dropdown option
@@ -229,7 +200,6 @@ function populateFields(response) {
 function process_response(response) {
 	if(response == 'DUPLICATE') {
 		$('#error-sku').text('');
-		// errors.sku = false;	// TODO
 		var param = "sku=" + $.trim($('#sku').val());
 		var url = "/perl/jadrn035/cgi/get_record.cgi?" + param;
 		$.get(url, populateFields);
@@ -238,13 +208,11 @@ function process_response(response) {
 		$('#error-sku').text('SKU does not exist in the database');
 		disableSubmit();
 		disableFieldsExceptSKU();
-		// errors.sku = true;	// TODO
 	}
 	else {
 		$('#error-sku').text('Server error. Try again after sometime');
 		disableSubmit();
 		disableFieldsExceptSKU();
-		// errors.sku = true;	// TODO
 	}
 }
 
@@ -253,11 +221,9 @@ function duplicate_handler(response) {
 	if(response == 'DUPLICATE') {
 		$('#error-sku').text('SKU already exists in the database');
 		disableSubmit();
-		// errors.sku = true;	// TODO
 	}
 	else if(response == 'UNIQUE') {
 		$('#error-sku').text('');
-		// errors.sku = false;	// TODO
 	}
 }
 
@@ -447,17 +413,14 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-sku').text('SKU cannot be empty');
 			disableSubmit();
-			// errors.sku = true;	// TODO
 		}
 		else if(!isValidSKU(value)) {
 			$('#error-sku').text('Enter a valid SKU format (Eg. BVS-316)');
 			disableSubmit();
-			// errors.sku = true;	// TODO
 		}
 		else if(currentTab == 'Add') {
 			$('#error-sku').text('');
 			enableSubmit();
-			// errors.sku = false;	// TODO
 			var url = "/perl/jadrn035/cgi/check_duplicate.cgi?" + param;
 			$.get(url, duplicate_handler);
 		}
@@ -478,12 +441,10 @@ $(document).ready(function() {
 		if(!isValidOption(value)) {
 			$('#error-category').text('Please select a category');
 			disableSubmit();
-			// errors.category = true;	// TODO
 		}
 		else {
 			$('#error-category').text('');
 			enableSubmit();
-			// errors.category = false;	// TODO
 		}
 	});
 	
@@ -494,12 +455,10 @@ $(document).ready(function() {
 		if (!isValidOption(value)) {
 			$('#error-vendor').text('Please select a category');
 			disableSubmit();
-			// errors.vendor = true;	// TODO
 		}
 		else {
 			$('#error-vendor').text('');
 			enableSubmit();
-			// errors.vendor = false;	// TODO
 		}
 	});
 	
@@ -510,12 +469,10 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-mfg-id').text('Manufacturer\'s Identifier cannot be empty');
 			disableSubmit();
-			// errors.mfg_id = true;	// TODO
 		}
 		else {
 			$('#error-mfg-id').text('');
 			enableSubmit();
-			// errors.mfg_id = false;	// TODO
 		}
 	});
 	
@@ -526,12 +483,10 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-description').text('Description cannot be empty');
 			disableSubmit();
-			// errors.description = true;	// TODO
 		}
 		else {
 			$('#error-description').text('');
 			enableSubmit();
-			// errors.description = false;	// TODO
 		}
 	});
 	$('#description').on('keyup', function(){
@@ -552,12 +507,10 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-features').text('Features cannot be empty');
 			disableSubmit();
-			// errors.features = true;	// TODO
 		}
 		else {
 			$('#error-features').text('');
 			enableSubmit();
-			// errors.features = false;	// TODO
 		}
 	});
 	$('#features').on('keyup', function(){
@@ -578,17 +531,14 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-cost').text('Cost cannot be empty');
 			disableSubmit();
-			// errors.cost = true;	// TODO
 		}
 		else if(isNaN(value) || value <= 0) {
 			$('#error-cost').text('Cost should be a number greater than zero');
 			disableSubmit();
-			// errors.cost = true;	// TODO
 		}
 		else {
 			$('#error-cost').text('');
 			enableSubmit();
-			// errors.cost = false;	// TODO
 		}
 	});
 	
@@ -599,17 +549,14 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-retail').text('Retail cannot be empty');
 			disableSubmit();
-			// errors.retail = true;	// TODO
 		}
 		else if(isNaN(value) || value <= 0) {
 			$('#error-retail').text('Retail should be a number greater than zero');
 			disableSubmit();
-			// errors.retail = true;	// TODO
 		}
 		else {
 			$('#error-retail').text('');
 			enableSubmit();
-			// errors.retail = false;	// TODO
 		}
 	});
 	
@@ -620,17 +567,14 @@ $(document).ready(function() {
 		if (isEmpty(value)) {	// Empty string check
 			$('#error-qty').text('Quantity cannot be empty');
 			disableSubmit();
-			// errors.qty = true;	// TODO
 		}
 		else if(!Number.isInteger(value) || value < 0) {
 			$('#error-qty').text('Quantity should be an integer greater than or equal to zero');
 			disableSubmit();
-			// errors.qty = true;	// TODO
 		}
 		else {
 			$('#error-qty').text('');
 			enableSubmit();
-			// errors.qty = false;	// TODO
 		}
 	});
 	
@@ -641,28 +585,24 @@ $(document).ready(function() {
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
 			displayImage(false);
-			// errors.product_image = true;	// TODO
 		}
 		else if (!isValidFileFormat(this.files[0].name)) {
 			$('#error-image').text('Only .jpg, .jpeg, .png, .bmp, .svg, .gif, .tiff image formats are allowed. Upload another image');
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
 			displayImage(false);
-			// errors.product_image = true;	// TODO
 		}
 		else if (this.files[0].size/1000 > 3000) {
 			$('#error-image').text('File size exceeds 3 MB. Upload a smaller image');
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
 			displayImage(false);
-			// errors.product_image = true;	// TODO
 		}
 		else {
 			$('label[for="product-image"]').text(this.files[0].name);
 			$('#error-image').text('');
 			enableSubmit();
 			displayImage(true);
-			// errors.product_image = false;	// TODO
 		}
 	});
 	
