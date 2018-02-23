@@ -57,7 +57,7 @@ Content-type: text/html
 
   <body class="text-center">
     <header class="bg-dark">
-      <h1>Movieland</h1>
+      <h1><img class="header-logo" src="/~jadrn035/proj1/images/logo-header.png" alt="" width="48px" height="auto" />Movieland</h1>
     </header>
         
 	<!-- Navigation Bar -->

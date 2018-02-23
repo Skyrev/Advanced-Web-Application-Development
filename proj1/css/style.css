@@ -40,14 +40,10 @@ textarea {
 	padding: 1rem;
 }
 
-form label::after {
-    content: "*";
-    margin-left: 2px;
-    color: #ff0000;
-    vertical-align: super;
-    font-size: 13px;
+.header-logo {
+	vertical-align: bottom;
+    margin-right: 0.3rem;
 }
-
 
 /* Login Page */
 #form-login {
@@ -88,6 +84,14 @@ form label::after {
 
 
 /* Menu Page*/
+form label::after {
+    content: "*";
+    margin-left: 2px;
+    color: #ff0000;
+    vertical-align: super;
+    font-size: 13px;
+}
+
 #form-record {
     margin-top: 20px;
 }
