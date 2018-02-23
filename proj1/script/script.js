@@ -54,7 +54,7 @@ function isEmpty(value) {
 function isValidFileFormat(name) {
 	var length = name.length;
 	var dot = name.lastIndexOf('.');
-	var ext = name.slice(dot+1, dot+4 ).toLowerCase();
+	var ext = name.slice(dot+1, dot+5 ).toLowerCase();
 	if (ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif'
 					 || ext == 'tiff' || ext == 'svg' || ext == 'bmp') {
 		return true;
@@ -62,7 +62,7 @@ function isValidFileFormat(name) {
 	return false;
 }
 
-// Returns true if the passed parameter is of valid format. Eg: ABC-123
+// Returns true if the passed parameter is of valid format. Eg: BVS-316
 // ie. three uppercase letters (A-Z) followed by a dash (-) and three digits (0-9)
 function isValidSKU(value) {
 	var regex = /^[A-Z]{3}-[0-9]{3}$/;
@@ -450,7 +450,7 @@ $(document).ready(function() {
 			// errors.sku = true;	// TODO
 		}
 		else if(!isValidSKU(value)) {
-			$('#error-sku').text('Enter a valid SKU format (Eg. ABC-123)');
+			$('#error-sku').text('Enter a valid SKU format (Eg. BVS-316)');
 			disableSubmit();
 			// errors.sku = true;	// TODO
 		}

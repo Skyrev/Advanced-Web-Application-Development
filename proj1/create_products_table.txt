@@ -6,24 +6,11 @@ CREATE TABLE products(
 	sku CHAR(7) PRIMARY KEY,
 	category VARCHAR(20) NOT NULL,
 	vendor VARCHAR(20) NOT NULL,
-	mfg_id VARCHAR(20) NOT NULL,
+	mfg_id VARCHAR(30) NOT NULL,
 	description VARCHAR(300) NOT NULL,
 	features VARCHAR(700) NOT NULL,
 	cost DECIMAL(10,2) NOT NULL,
 	retail DECIMAL(10,2) NOT NULL,
 	quantity INT(10) NOT NULL,
 	image VARCHAR(12) NOT NULL
-);
-
-INSERT INTO products VALUES(
-	"ABC-123",
-	"Sci-Fi",
-	"Disney",
-	"Star Wars",
-	"A New Hope",
-	"Episode IV",
-	10.00,
-	20.00,
-	100,
-	"ABC-123.jpg"
 );

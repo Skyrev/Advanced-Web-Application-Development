@@ -143,7 +143,7 @@ Content-type: text/html
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="sku">SKU</label>
-                <input type="text" class="form-control" name="sku" id="sku" placeholder="Eg. ABC-123" maxlength="7" required>
+                <input type="text" class="form-control" name="sku" id="sku" placeholder="Eg. BVS-316" maxlength="7" required>
                 <div class="errors">
                   <span id="error-sku"></span>
                 </div>
@@ -182,7 +182,7 @@ Content-type: text/html
               </div>
               <div class="form-group col-md-6">
                 <label for="mfg-id">Manufacturer&apos;s Identifier</label>
-                <input type="text" class="form-control" name="mfg-id" id="mfg-id" placeholder="" maxlength="20" required>
+                <input type="text" class="form-control" name="mfg-id" id="mfg-id" placeholder="" maxlength="30" required>
                 <div class="errors">
                   <span id="error-mfg-id"></span>
                 </div>
