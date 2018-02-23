@@ -1,6 +1,20 @@
 use jadrn035;
 
+DROP TABLE IF EXISTS vendor;
+DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS products;
+
+CREATE TABLE vendor(
+    id  INT NOT NULL AUTO_INCREMENT,
+    name    VARCHAR(20) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE category(
+    id  INT NOT NULL AUTO_INCREMENT,
+    name    VARCHAR(20) NOT NULL,
+    PRIMARY KEY(id)
+);
 
 CREATE TABLE products(
 	sku CHAR(7) PRIMARY KEY,
@@ -12,5 +26,20 @@ CREATE TABLE products(
 	cost DECIMAL(10,2) NOT NULL,
 	retail DECIMAL(10,2) NOT NULL,
 	quantity INT(10) NOT NULL,
-	image VARCHAR(12) NOT NULL
+	image VARCHAR(12) NOT NULL,
+	PRIMARY KEY(sku),
+    FOREIGN KEY(category) REFERENCES category(id),
+    FOREIGN KEY(vendor) REFERENCES vendor(id)
 );
+
+INSERT INTO category (name)  VALUES('Sci-Fi');
+INSERT INTO category (name)  VALUES('Drama');
+INSERT INTO category (name)  VALUES('Cult');
+INSERT INTO category (name)  VALUES('Superhero');
+INSERT INTO category (name)  VALUES('Musical');
+
+INSERT INTO vendor (name)  VALUES('Warner Bros.');	
+INSERT INTO vendor (name)  VALUES('Disney'); 
+INSERT INTO vendor (name)  VALUES('Miramax');
+INSERT INTO vendor (name)  VALUES('Sony'); 
+INSERT INTO vendor (name)  VALUES('20th Century Fox');

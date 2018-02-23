@@ -69,9 +69,9 @@ function isValidSKU(value) {
 	return regex.test($.trim(value));
 }
 
-// Returns true if the passed parameter is not '- Select -'
+// Returns true if the passed parameter is not 0 (- Select -)
 function isValidOption(value) {
-	return value != '- Select -';
+	return value != 0;
 }
 
 // Disables the submit (Add, Edit, Delete) button
@@ -269,8 +269,8 @@ function constructConfirmationMessage() {
 	
 	var image = $('#sku').val() + '.' + ext;
 	var sku = $('#sku').val();
-	var category = $('#category').val();
-	var vendor = $('#vendor').val();
+	var category = $('#category option:eq('+ $('#category').val() +')').text();
+	var vendor = $('#vendor option:eq('+ $('#vendor').val() +')').text();
 	var mfg_id = $('#mfg-id').val();
 	
 	var description = $('#description').val();

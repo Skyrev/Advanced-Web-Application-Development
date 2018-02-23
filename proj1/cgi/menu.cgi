@@ -151,12 +151,12 @@ Content-type: text/html
               <div class="form-group col-md-6">
                 <label for="category">Category</label>
                 <select class="form-control" name="category" id="category" required>
-                      <option value="- Select -" selected>- Select -</option>
-                      <option value="Sci-Fi">Sci-Fi</option>
-                      <option value="Drama">Drama</option>
-                      <option value="Cult">Cult</option>
-                      <option value="Superhero">Superhero</option>
-                      <option value="Musical">Musical</option>
+                      <option value="0" selected>- Select -</option>
+                      <option value="1">Sci-Fi</option>
+                      <option value="2">Drama</option>
+                      <option value="3">Comedy</option>
+                      <option value="4">Superhero</option>
+                      <option value="5">Musical</option>
                 </select>
                 <div class="errors">
                   <span id="error-category"></span>
@@ -169,12 +169,12 @@ Content-type: text/html
               <div class="form-group col-md-6">
                 <label for="vendor">Vendor</label>
                 <select class="form-control" name="vendor" id="vendor" required>
-	                <option value="- Select -" selected>- Select -</option>
-	                <option value="Warner Bros.">Warner Bros.</option>
-	                <option value="Disney">Disney</option>
-	                <option value="Miramax">Miramax</option>
-	                <option value="Sony">Sony</option>
-	                <option value="20th Century Fox">20th Century Fox</option>
+	                <option value="0" selected>- Select -</option>
+	                <option value="1">Warner Bros.</option>
+	                <option value="2">Disney</option>
+	                <option value="3">Miramax</option>
+	                <option value="4">Sony</option>
+	                <option value="5">20th Century Fox</option>
                 </select>
                 <div class="errors">
                   <span id="error-vendor"></span>
