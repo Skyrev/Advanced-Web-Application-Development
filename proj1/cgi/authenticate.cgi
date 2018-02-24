@@ -1,3 +1,8 @@
+# Revankar, Akash
+# Account: jadrn035
+# CS645 Spring 2018
+# Project #1
+
 use CGI;
 use CGI::Session;
 use CGI::Carp qw (fatalsToBrowser);
@@ -7,7 +12,7 @@ use Crypt::Password;
 $q = new CGI;
 my $user = $q->param("username");
 my $password = $q->param("password");    
-open DATA, "</srv/www/cgi-bin/jadrn035/cgi/passwords.dat" 
+open DATA, "</srv/www/cgi-bin/jadrn035/proj1/passwords.dat" 
     or die "Cannot open file.";
 @file_lines = <DATA>;
 close DATA;

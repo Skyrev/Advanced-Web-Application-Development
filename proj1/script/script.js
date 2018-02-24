@@ -1,8 +1,8 @@
 /*
 	Revankar, Akash
+	Account: jadrn035
 	CS645 Spring 2018
-
-	script.js
+	Project #1
 */
 
 // Redirect to Access Denied page if session has expired
@@ -201,7 +201,7 @@ function process_response(response) {
 	if(response == 'DUPLICATE') {
 		$('#error-sku').text('');
 		var param = "sku=" + $.trim($('#sku').val());
-		var url = "/perl/jadrn035/cgi/get_record.cgi?" + param;
+		var url = "/perl/jadrn035/proj1/get_record.cgi?" + param;
 		$.get(url, populateFields);
 	}
 	else if(response == 'UNIQUE') {
@@ -298,7 +298,7 @@ function upload_image(url) {
     form_data.append('image', document.getElementById('product-image').files[0]);         	
     
     $.ajax({
-        url: '/perl/jadrn035/cgi/image_upload.cgi',
+        url: '/perl/jadrn035/proj1/image_upload.cgi',
         type: 'post',
         data: form_data,
         processData: false,
@@ -421,11 +421,11 @@ $(document).ready(function() {
 		else if(currentTab == 'Add') {
 			$('#error-sku').text('');
 			enableSubmit();
-			var url = "/perl/jadrn035/cgi/check_duplicate.cgi?" + param;
+			var url = "/perl/jadrn035/proj1/check_duplicate.cgi?" + param;
 			$.get(url, duplicate_handler);
 		}
 		else {
-			var url = "/perl/jadrn035/cgi/check_duplicate.cgi?" + param;
+			var url = "/perl/jadrn035/proj1/check_duplicate.cgi?" + param;
 			$.get(url, process_response);
 		}
 	});
@@ -623,7 +623,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		var value = $(this).text();
-		var url = '/perl/jadrn035/cgi/';
+		var url = '/perl/jadrn035/proj1/';
 		
 		if(value == 'Delete') {
 			url += 'delete_record.cgi?sku=' + $.trim($('#sku').val());

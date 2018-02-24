@@ -1,9 +1,9 @@
 #!/usr/bin/perl 
 
 # Revankar, Akash
-# jadrn035
+# Account: jadrn035
+# CS645 Spring 2018
 # Project #1
-# Spring 2018
 
 use CGI;   
 use DBI;
