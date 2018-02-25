@@ -212,6 +212,7 @@ function process_response(response) {
 	else {
 		if(getCookie('jadrn035_SID') == '') {
 			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+			$('#modal-redirect').modal({backdrop: 'static'});
 			$('#modal-redirect').modal('show');
 		}
 		else {
@@ -234,6 +235,7 @@ function duplicate_handler(response) {
 	
 	if(getCookie('jadrn035_SID') == '') {
 		$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+		$('#modal-redirect').modal({backdrop: 'static'});
 		$('#modal-redirect').modal('show');
 	}
 }
