@@ -278,6 +278,10 @@ function constructConfirmationMessage() {
 
 // Displays message after form submission
 function displayConfirmation(response) {
+	// Hide the processing gif
+	$('[type="submit"]').html('');
+	$('[type="submit"]').text(currentTab);
+	
 	if(response == 'ADDED' || response == 'EDITED' || response == 'DELETED') {
 		if(response == 'ADDED') {
 			$('#modal-confirmation .modal-title').text('Record added successfully!');		
@@ -641,7 +645,7 @@ $(document).ready(function() {
 		
 		var value = $(this).text();
 		var url = '/perl/jadrn035/proj1/';
-		
+		$(this).html('<img src="/~jadrn035/proj1/images/processing.png" width="22px" height="auto"/>');
 		if(value == 'Delete') {
 			url += 'delete_record.cgi?sku=' + $.trim($('#sku').val());
 			$.get(url, displayConfirmation);
