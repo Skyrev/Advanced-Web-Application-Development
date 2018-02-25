@@ -132,6 +132,7 @@ form label::after {
 
 .record-buttons button {
 	width: 147px;
+	vertical-align: top;
 }
 
 #upload {
@@ -143,6 +144,7 @@ form label::after {
 }
 
 #modal-confirmation td:nth-child(odd) {
+	width: 170px;
     text-align: right;
 }
 
