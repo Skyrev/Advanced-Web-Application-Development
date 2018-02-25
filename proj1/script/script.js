@@ -210,9 +210,15 @@ function process_response(response) {
 		disableFieldsExceptSKU();
 	}
 	else {
-		$('#error-sku').text('Server error. Try again after sometime');
-		disableSubmit();
-		disableFieldsExceptSKU();
+		if(getCookie('jadrn035_SID') == '') {
+			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+			$('#modal-redirect').modal('show');
+		}
+		else {
+			$('#error-sku').text('Server error. Try again after sometime');
+			disableSubmit();
+			disableFieldsExceptSKU();
+		}
 	}
 }
 
@@ -224,6 +230,11 @@ function duplicate_handler(response) {
 	}
 	else if(response == 'UNIQUE') {
 		$('#error-sku').text('');
+	}
+	
+	if(getCookie('jadrn035_SID') == '') {
+		$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+		$('#modal-redirect').modal('show');
 	}
 }
 
@@ -280,6 +291,10 @@ function displayConfirmation(response) {
 		$('[type="reset"]').click();
 	}
 	else {
+		if(getCookie('jadrn035_SID') == '') {
+			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+			$('#modal-redirect').modal('show');
+		}
 		$('#modal-confirmation .modal-title').text('Error');
 		$('#modal-confirmation-body').text('Some error occurred. Please try again after some time.');
 		$('#modal-confirmation').modal('show');

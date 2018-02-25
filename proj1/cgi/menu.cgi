@@ -123,6 +123,22 @@ Content-type: text/html
 	      </div>
 	    </div>
 	  </div>
+	  
+	  <!-- Session Expired Modal -->
+	  <div class="modal fade" id="modal-redirect" tabindex="-1" role="dialog" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h5 class="modal-title">Session Expired</h5>
+	        </div>
+	        <div id="modal-redirect-body" class="modal-body">
+			</div>
+	        <div class="modal-footer justify-content-center">
+	          <a href="/~jadrn035/proj1/index.html" class="btn btn-primary">Go to Log In</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
       
 	  <!-- Form Container -->
       <div id="record-form-container" class="card">
