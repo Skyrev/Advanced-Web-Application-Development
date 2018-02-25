@@ -15,12 +15,6 @@ my $session = new CGI::Session(undef, $param_sid, {Directory=>'/tmp'});
 my $sid = $session->id;
 
 if($param_sid eq $sid) {
-
-
-# $q = new CGI;
-# $sid = $q->cookie('jadrn035_SID');
-#
-# if($sid) {
   grant_access();
 }
 else {
