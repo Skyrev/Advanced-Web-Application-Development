@@ -15,46 +15,68 @@
 use CGI;
 use CGI::Carp qw (fatalsToBrowser);
 use File::Basename;
-
-### constants
-$CGI::POST_MAX = 1024 * 3000; # Limit file size to 3MB
-my $upload_dir = '/home/jadrn035/public_html/proj1/image_uploads';
-my $safe_filename_chars = "a-zA-Z0-9_.-";
+use CGI::Session;
 
 my $q = new CGI;
-my $sku = $q->param("sku");
-my $filename = $q->param("product-image");
-unless($filename) {
-    die "There was a problem uploading the image. It's probably too big.";
+my $param_sid = $q->cookie('jadrn035_SID');
+my $session = new CGI::Session(undef, $param_sid, {Directory=>'/tmp'});
+my $sid = $session->id;
+
+if($param_sid eq $sid) {
+
+	### constants
+	$CGI::POST_MAX = 1024 * 3000; # Limit file size to 3MB
+	my $upload_dir = '/home/jadrn035/public_html/proj1/image_uploads';
+	my $safe_filename_chars = "a-zA-Z0-9_.-";
+
+	my $q = new CGI;
+	my $sku = $q->param("sku");
+	my $filename = $q->param("product-image");
+	unless($filename) {
+	    die "There was a problem uploading the image. It's probably too big.";
+	}
+
+	my $extension = substr($filename, index($filename, "."));
+	$filename = $sku.$extension;
+
+	$filename =~ s/ //; #remove any spaces
+	if($filename !~ /^([$safe_filename_chars]+)$/) {
+	    die "Sorry, invalid character in the filename.";
+	}   
+
+	$filename = untaint($filename);
+
+	# get a handle on the uploaded image     
+	my $filehandle = $q->upload("product-image"); 
+
+	unless($filehandle) {
+	  die "Invalid handle";
+	}
+
+	# save the file
+	open UPLOADFILE, ">$upload_dir/$filename" or die "Error! Cannot save the file.";
+	binmode UPLOADFILE;
+	while(<$filehandle>) {
+	    print UPLOADFILE $_;
+	}
+	close UPLOADFILE;
+
+	print "content-type: text/html\n\n";
+	print "UPLOADED";
 }
+else {
+    print <<END;
+Content-type: text/html
 
-my $extension = substr($filename, index($filename, "."));
-$filename = $sku.$extension;
-
-$filename =~ s/ //; #remove any spaces
-if($filename !~ /^([$safe_filename_chars]+)$/) {
-    die "Sorry, invalid character in the filename.";
-}   
-
-$filename = untaint($filename);
-
-# get a handle on the uploaded image     
-my $filehandle = $q->upload("product-image"); 
-
-unless($filehandle) {
-  die "Invalid handle";
+<html>
+<head>
+  <meta http-equiv="refresh" content="0; url=http://jadran.sdsu.edu/~jadrn035/proj1/access_denied.html" />
+</head>
+<body>
+</body>
+</html>
+END
 }
-
-# save the file
-open UPLOADFILE, ">$upload_dir/$filename" or die "Error! Cannot save the file.";
-binmode UPLOADFILE;
-while(<$filehandle>) {
-    print UPLOADFILE $_;
-}
-close UPLOADFILE;
-
-print "content-type: text/html\n\n";
-print "UPLOADED";
 
 # this is needed because mod_perl runs with -T (taint mode), and thus the
 # filename is insecure and disallowed unless untainted. Return values

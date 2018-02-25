@@ -9,10 +9,18 @@ use CGI::Carp qw (fatalsToBrowser);
 use Crypt::Password;
 
 
-$q = new CGI;
-$sid = $q->cookie('jadrn035_SID');
+my $q = new CGI;
+my $param_sid = $q->cookie('jadrn035_SID');
+my $session = new CGI::Session(undef, $param_sid, {Directory=>'/tmp'});
+my $sid = $session->id;
 
-if($sid) {
+if($param_sid eq $sid) {
+
+
+# $q = new CGI;
+# $sid = $q->cookie('jadrn035_SID');
+#
+# if($sid) {
   grant_access();
 }
 else {
