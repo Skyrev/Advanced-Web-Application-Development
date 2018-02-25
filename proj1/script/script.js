@@ -48,13 +48,6 @@ function isValidFileFormat(name) {
 	return false;
 }
 
-// Returns true if the passed parameter is of valid format. Eg: BVS-316
-// ie. three uppercase letters (A-Z) followed by a dash (-) and three digits (0-9)
-function isValidSKU(value) {
-	var regex = /^[A-Z]{3}-[0-9]{3}$/;
-	return regex.test($.trim(value));
-}
-
 // Returns true if the passed parameter is not 0 (- Select -)
 function isValidOption(value) {
 	return value != 0;
@@ -435,7 +428,7 @@ $(document).ready(function() {
 			$('#error-sku').text('SKU cannot be empty');
 			disableSubmit();
 		}
-		else if(!isValidSKU(value)) {
+		else if(!value.match(/^[A-Z]{3}-[0-9]{3}$/)) {
 			$('#error-sku').text('Enter a valid SKU format (Eg. BVS-316)');
 			disableSubmit();
 		}
@@ -609,6 +602,12 @@ $(document).ready(function() {
 		}
 		else if (!isValidFileFormat(this.files[0].name)) {
 			$('#error-image').text('Only .jpg, .jpeg, .png, .bmp, .svg, .gif, .tiff image formats are allowed. Upload another image');
+			$('label[for="product-image"]').text('Choose Product Image');
+			disableSubmit();
+			displayImage(false);
+		}
+		else if (!this.files[0].name.match(/^[a-zA-Z0-9_.-]+$/)) {
+			$('#error-image').text('File name contains invalid characters. Valid characters are letters, digits, dot, dash and underscore.');
 			$('label[for="product-image"]').text('Choose Product Image');
 			disableSubmit();
 			displayImage(false);
