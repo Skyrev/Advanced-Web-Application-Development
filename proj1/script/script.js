@@ -203,16 +203,9 @@ function process_response(response) {
 		disableFieldsExceptSKU();
 	}
 	else {
-		if(getCookie('jadrn035_SID') == '') {
-			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
-			$('#modal-redirect').modal({backdrop: 'static'});
-			$('#modal-redirect').modal('show');
-		}
-		else {
-			$('#error-sku').text('Server error. Try again after sometime');
-			disableSubmit();
-			disableFieldsExceptSKU();
-		}
+		$('#error-sku').text('Server error. Try again after sometime');
+		disableSubmit();
+		disableFieldsExceptSKU();
 	}
 }
 
@@ -224,12 +217,6 @@ function duplicate_handler(response) {
 	}
 	else if(response == 'UNIQUE') {
 		$('#error-sku').text('');
-	}
-	
-	if(getCookie('jadrn035_SID') == '') {
-		$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
-		$('#modal-redirect').modal({backdrop: 'static'});
-		$('#modal-redirect').modal('show');
 	}
 }
 
@@ -641,6 +628,11 @@ $(document).ready(function() {
 	// Handler for Add, Edit, Delete buttons
 	$('[type="submit"]').on('click', function(e) {
 		e.preventDefault();
+		
+		if(getCookie('jadrn035_SID') == '') {
+			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+			$('#modal-redirect').modal('show');
+		}
 		
 		var value = $(this).text();
 		var url = '/perl/jadrn035/proj1/';
