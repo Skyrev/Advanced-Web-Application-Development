@@ -290,10 +290,6 @@ function displayConfirmation(response) {
 		$('[type="reset"]').click();
 	}
 	else {
-		if(getCookie('jadrn035_SID') == '') {
-			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
-			$('#modal-redirect').modal('show');
-		}
 		$('#modal-confirmation .modal-title').text('Error');
 		$('#modal-confirmation-body').text('Some error occurred. Please try again after some time.');
 		$('#modal-confirmation').modal('show');
@@ -421,6 +417,10 @@ $(document).ready(function() {
 	
 	// Handlers for SKU
 	$('#sku').on('blur', function() {
+		if(getCookie('jadrn035_SID') == '') {
+			$('#modal-redirect-body').text('Looks like your session has expired. Log in again to continue.');
+			$('#modal-redirect').modal('show');
+		}
 		var value = $(this).val();
 		var param = "sku=" + $.trim(value);
 		
