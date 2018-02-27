@@ -40,27 +40,18 @@ if($param_sid eq $sid) {
 	my $qty = $q->param('qty');
 	my $image = $q->param('product-image');
 
-	my $extension = substr($image, index($image, "."));
-	if($extension) {
-		$image = $sku.$extension;
+	my $sth;
+
+	if($image ne '') {
+		$image = $sku.substr($image, index($image, "."));
+		$sth = $dbh->prepare("UPDATE products SET sku=?, category=?, vendor=?, mfg_id=?, description=?, features=?, cost=?, retail=?, quantity=?, image=? WHERE sku=?;");
+		$sth->execute($sku, $category, $vendor, $mfgid, $description, $features, $cost, $retail, $qty, $image, $sku);
 	}
 	else {
-		my $sth = $dbh->prepare("SELECT image FROM products where sku='$sku'");
-		my $str = "";
-		$sth->execute();
-		while(my @row=$sth->fetchrow_array()) {
-		    foreach $item (@row) { 
-		        $str .= $item;
-		    }  
-		}
-		$sth->finish();
-	
-		$image = $str;
+		$sth = $dbh->prepare("UPDATE products SET sku=?, category=?, vendor=?, mfg_id=?, description=?, features=?, cost=?, retail=?, quantity=? WHERE sku=?;");
+		$sth->execute($sku, $category, $vendor, $mfgid, $description, $features, $cost, $retail, $qty, $sku);
 	}
-
-	my $sth = $dbh->prepare("UPDATE products SET sku=?, category=?, vendor=?, mfg_id=?, description=?, features=?, cost=?, retail=?, quantity=?, image=? WHERE sku=?;");
-
-	$sth->execute($sku, $category, $vendor, $mfgid, $description, $features, $cost, $retail, $qty, $image, $sku);
+	
 	my $number_of_rows = $sth->rows;
 	$sth->finish();
 	$dbh->disconnect();
