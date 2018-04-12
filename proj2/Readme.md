@@ -1,4 +1,5 @@
 <h2>Movieland</h2>
+<a href="http://jadran.sdsu.edu/jadrn035/proj2.html">Link</a>
 <p>This is a continuation of the previous project (proj1). This is the customer application ie the online storefront. This application is the 'face' of the business to the public. This application allows users to browse through store offerings easily.</p>
 
 <h3>Screenshots</h3>
