@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<!--
+	Revankar, Akash
+	jadrn035
+	Project #2
+	Fall 2018
+
+	landing page
+-->
+	<head>
+		<meta charset="UTF-8">
+		
+		<link rel="icon" type="image/png" href="proj2/favicon.png" />
+		
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+		<link rel="stylesheet" href="proj2/css/style.css">
+		
+		<script src="/jquery/jquery.js"></script>
+		<script src="proj2/script/shopping_cart.js"></script>
+		<script src="proj2/script/products.js"></script>
+		<script src="proj2/script/order.js"></script>
+		
+		<title>Movieland</title>
+	</head>
+
+	<body id="home">
+		<div class="navbar align-right">
+	    	<ul class="menu-bar">
+				<li class="menu-item">
+					<a href="#home" id="home-nav">Home</a>
+				</li>
+				<li class="menu-item">
+					<a href="#products" id="products-nav">Products</a>
+				</li>
+				<li class="menu-item">
+					<a href="#order" id="order-nav">Orders</a>
+				</li>
+				<li class="menu-item">
+					<a href="#aboutus" id="aboutus-nav">About Us</a>
+				</li>
+				<li class="menu-item">
+					<a href="#contact" id="contact-nav">Contact</a>
+				</li>
+				<li class="menu-item">
+					<a href="#order" id="cart-nav">
+						<span id="cart-item-count" class="align-center">0</span>
+						<br>
+						<span id="checkout-label">Checkout</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="banner">
+			<a href="#home"><img src="proj2/images/logo.png" alt="Logo" width="auto" height="35px">Movieland</a>
+		</div>
+		
+		<div class="home">
+			<div class="contents align-center">
+				<div class="titlecard">WELCOME TO MOVIELAND</div>
+				<div class="home-products-wrapper">
+					<div class="home-products-title">Some of our products</div>
+					<div class="home-products-container align-center">
+						
+					</div>
+					<div id="more-products" class="align-center centered"><a href="#products">More Products Below</a></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="product-info-modal">
+	    	<div class="product-info-container centered">
+				<div id="product-info">
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="loading-modal">
+	    	<div class="loading-container centered">
+				<div id="loading">
+					<img src="proj2/images/loading.png" alt="" width="auto" height="86px"/>
+				</div>
+			</div>
+		</div>
+		
+		<div id="products" class="products">
+			<div class="heading align-center">
+				<h2>Our Products</h2>
+				<h4>Filters</h4>
+				<div class="filter-container">
+					<div>
+						<label for="filter-description">Description: </label>
+						<input type="text" id="filter-description" name="filter-description" />
+					</div>
+					<div>
+						<label for="filter-category">Category: </label>
+						<select id="filter-category" name="filter-category">
+							
+						</select>
+					</div>
+					<div>
+						<label for="filter-vendor">Vendor: </label>
+						<select id="filter-vendor" name="filter-vendor">
+							
+						</select>
+					</div>
+					<div>
+						<label for="filter-price">Price Range: </label>
+						<select id="filter-price" name="filter-price">
+							<option value="">- Select -</option>
+							<option value="0-10">&dollar;0 - &dollar;10</option>
+							<option value="10-15">&dollar;10 - &dollar;15</option>
+							<option value="15-20">&dollar;15 - &dollar;20</option>
+							<option value="20-25">&dollar;20 - &dollar;25</option>
+							<option value="25-9999">&gt; &dollar;25</option>
+						</select>
+					</div>
+					<div>
+						<label for="filter-availability">Availability: </label>
+						<select id="filter-availability" name="filter-availability">
+							<option value="">- Select -</option>
+							<option value="In Stock">In Stock</option>
+							<option value="Coming Soon">Coming Soon</option>
+						</select>
+					</div>
+				</div>
+				<div class="filter-buttons-container">
+					<button id="filter-apply">Apply</button>
+					<button id="filter-clear">Clear</button>
+				</div>
+			</div>
+			<div class="products-wrapper align-center">
+				<div id="products-container"></div>
+			</div>
+		</div>
+		
+		<div id="order" class="order">
+			<div class="heading align-center">
+				<h2>Order Online</h2>
+			</div>
+			<div class="content">
+				<div class="empty-cart-msg align-center">
+					<p>Looks like your cart is empty. Go <span id="here" class="bold underline"><a href="#products">here</a></span> to add item(s) to your cart.</p>
+					<img src="proj2/images/default-product.png" alt="Empty Cart" width="250px" height="auto" />
+				</div>
+				<div class="cart centered">
+					
+				</div>
+				<div class="place-order-form-modal">
+			    	<div class="place-order-form-container centered">
+						<form id="place-order-form" name="place-order-form" action="" method="post">
+							<div id="close-modal" class="align-right">&#10060;</div>
+							<h2 class="align-center">Enter Your Details</h2>
+							<div id="note" class="align-center">
+								(All fields marked <span class="required">*</span> are mandatory. You will not be able to Submit the form unless you fill in all mandatory fields.)
+							</div>
+							<div class="form-tables">
+								<table id="billing-table" class="centered">
+									<tr>
+											<td class="form-group-heading" colspan="2"><h3>Billing Address</h3></td>
+									</tr>
+						
+									<tr>
+										<td>
+											<label for="firstname-billing">First Name<span class="required">*</span></label>
+											<br>
+											<input type="text" name="firstname-billing" value="">
+											<div class="errors"><span id="firstname-billing-error"></span></div>
+										</td>
+										<td>
+											<label for="lastname-billing">Last Name<span class="required">*</span></label>
+											<br>
+											<input type="text" name="lastname-billing" value="">
+											<div class="errors"><span id="lastname-billing-error"></span></div>
+										</td>
+									</tr>
+				
+									<tr>
+										<td>
+											<label for="addrline1-billing">Address Line 1<span class="required">*</span></label>
+											<br/>
+											<input type="text" name="addrline1-billing" value="" placeholder="Block No., Street Name">
+											<div class="errors"><span id="addrline1-billing-error"></span></div>
+										</td>
+										<td>
+											<label for="addrline2-billing">Address Line 2</label>
+											<br/>
+											<input type="text" name="addrline2-billing" value="" placeholder="Apt/Suite/House/Door No.">
+											<div class="errors"><span id="addrline2-billing-error"></span></div>
+										</td>
+									</tr>
+				
+									<tr>
+										<td>
+											<label for="city-billing">City<span class="required">*</span></label>
+											<br>
+											<input type="text" name="city-billing" value="">
+											<div class="errors"><span id="city-billing-error"></span></div>
+										</td>
+										<td>
+											<label for="state-billing">State<span class="required">*</span></label>
+											<br>
+											<input type="text" name="state-billing" value="" placeholder="eg. CA">
+											<div class="errors"><span id="state-billing-error"></span></div>
+										</td>
+									</tr>
+				
+									<tr>
+										<td>
+											<label for="zip-billing">Zip Code<span class="required">*</span></label>
+											<br>
+											<input type="text" name="zip-billing" value="" maxlength="5" placeholder="5-digit">
+											<div class="errors"><span id="zip-billing-error"></span></div>
+										</td>
+										<td>
+											<label for="phone-billing">Phone<span class="required">*</span></label>
+											<br/>
+											<input type="text" name="phone-billing" value="" maxlength="10" placeholder="10-digit">
+											<div class="errors"><span id="phone-billing-error"></span></div>
+										</td>
+									</tr>
+								</table>
+							
+								<table id="shipping-table" class="centered">
+									<tr>
+											<td class="form-group-heading" colspan="2"><h3>Shipping Address</h3></td>
+									</tr>
+						
+									<tr>
+										<td>
+											<label for="firstname-shipping">First Name<span class="required">*</span></label>
+											<br>
+											<input type="text" name="firstname-shipping" value="">
+											<div class="errors"><span id="firstname-shipping-error"></span></div>
+										</td>
+										<td>
+											<label for="lastname-shipping">Last Name<span class="required">*</span></label>
+											<br>
+											<input type="text" name="lastname-shipping" value="">
+											<div class="errors"><span id="lastname-shipping-error"></span></div>
+										</td>
+									</tr>
+				
+									<tr>
+										<td>
+											<label for="addrline1-shipping">Address Line 1<span class="required">*</span></label>
+											<br/>
+											<input type="text" name="addrline1-shipping" value="" placeholder="Block No., Street Name">
+											<div class="errors"><span id="addrline1-shipping-error"></span></div>
+										</td>
+										<td>
+											<label for="addrline2-shipping">Address Line 2</label>
+											<br/>
+											<input type="text" name="addrline2-shipping" value="" placeholder="Apt/Suite/House/Door No.">
+											<div class="errors"><span id="addrline2-shipping-error"></span></div>
+										</td>
+									</tr>
+				
+									<tr>
+										<td>
+											<label for="city-shipping">City<span class="required">*</span></label>
+											<br>
+											<input type="text" name="city-shipping" value="">
+											<div class="errors"><span id="city-shipping-error"></span></div>
+										</td>
+										<td>
+											<label for="state-shipping">State<span class="required">*</span></label>
+											<br>
+											<input type="text" name="state-shipping" value="" placeholder="eg. CA">
+											<div class="errors"><span id="state-shipping-error"></span></div>
+										</td>
+									<tr/>
+									<tr>
+										<td>
+											<label for="zip-shipping">Zip Code<span class="required">*</span></label>
+											<br>
+											<input type="text" name="zip-shipping" value="" maxlength="5" placeholder="5-digit">
+											<div class="errors"><span id="zip-shipping-error"></span></div>
+										</td>
+										<td>
+											<label for="phone-shipping">Phone<span class="required">*</span></label>
+											<br/>
+											<input type="text" name="phone-shipping" value="" maxlength="10" placeholder="10-digit">
+											<div class="errors"><span id="phone-shipping-error"></span></div>
+										</td>
+									</tr>
+								</table>
+								
+								<div id="same-addr" class="align-center">
+									<input type="checkbox" name="same-addr"> Shipping address same as billing address
+								</div>
+									
+								<table id="payment-table" class="centered">
+									<tr>
+											<td class="form-group-heading" colspan="2"><h3>Payment Details</h3></td>
+									</tr>
+									<tr>
+										<td>
+											<label for="payment-type">Payment Type<span class="required">*</span></label>
+										</td>
+										<td>
+											<div class="errors"><span id="payment-type-error"></span></div>
+											<select id="payment-type">
+												<option name="unselected" value="Unselected"> - Select - </option>
+												<option name="visa" value="Visa">Visa</option>
+												<option name="master-card" value="Master Card">Master Card</option>
+												<option name="discover" value="Discover">Discover</option>
+												<option name="american-express" value="American Express">American Express</option>
+											</select>
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											<label for="card-number">Card Number<span class="required">*</span></label>
+										</td>
+										<td>
+											<div class="errors"><span id="card-number-error"></span></div>
+											<input type="text" name="card-number" id="card-number" value="" maxlength="16" placeholder="16-digit">
+										</td>
+									</tr>
+				
+									<tr>
+										<td>
+											<label for="expr-date">Expiration Date<span class="required">*</span></label>
+										</td>
+										<td>
+											<div class="errors"><span id="expr-date-error"></span></div>
+											<input type="text" name="expr-date" id="expr-date" value="" placeholder="mm/yyyy">
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											<label for="security-code">Security Code<span class="required">*</span></label>
+										</td>
+										<td>
+											<div class="errors"><span id="security-code-error"></span></div>
+											<input type="password" name="security-code" id="security-code" value="" size="4" maxlength="3" placeholder="***">
+										</td>
+									</tr>
+								</table>
+							</div>
+				
+							<div class="form-buttons centered">
+								<button id="cancel" title="Close form">Cancel</button>
+								<button type="submit" id="summary" form="place-order-form">Summary</button>
+								<button type="reset" id="clear-form" form="place-order-form" title="Clear entered data">Clear Form</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="aboutus" class="aboutus">
+			<div class="heading align-center">
+				<h2>About Us</h2>
+			</div>
+			<div class="content">
+				<div class="aboutus-content centered align-center">
+					<img src="proj2/images/logo.png" alt="Logo" width="197px" height="auto">
+					<p>As a company rooted in movies, our mission is to help eliminate piracy by responsibly and legitimately selling our products to everyone.</p>
+					<p>Our approach to selling movies sets us apart as a company. Our model is based on a core idea – movies can be sold in a way that allows everyone in the reel to thrive.</p>
+					<p>We build long-term relationships with our customers around the world and our prices reflect the value of those relationships and the quality of products we sell.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div id="contact" class="contact align-center">
+			<div class="heading">
+				<h2>Contact Us</h2>
+			</div>
+			<div class="content">
+				<p>Like our products or have any complaints? We'd love to hear from you.</p>
+				<p>Leave us your feedback at <span class="bold underline">feedback@movieland.com</span></p>
+				<br/>
+				<p>Our address:</p>
+				<p>666 Superman Ave</p>
+				<p>Metropolis, MI 92885</p>
+				<p>Phone: 123-456-7890</p>
+				<p>E-mail: <span class="bolder underline">info@movieland.com</span></p>
+				<br/>
+				<div class="social centered">
+					<p>Follow us on social media</p>
+					<div class="social-links">
+						<div><img src="proj2/images/fb.png" alt="fb" width="40px" height="auto"/></div>
+						<div><img src="proj2/images/ig.png" alt="ig" width="40px" height="auto"/></div>
+						<div><img src="proj2/images/tw.png" alt="tw" width="40px" height="auto"/></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
